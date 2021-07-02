@@ -10,7 +10,7 @@ Global Filter Networks is a transformer-style architecture that learns long-term
 
 Our code is based on [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) and [DeiT](https://github.com/facebookresearch/deit).
 
-[[Project Page]](https://gfnet.ivg-research.xyz/) [[arXiv]](https://arxiv.org/abs/)
+[[Project Page]](https://gfnet.ivg-research.xyz/) [[arXiv]](https://arxiv.org/abs/2107.00645)
 
 ## Model Zoo
 
@@ -93,7 +93,7 @@ If you find our work useful in your research, please consider citing:
 @article{rao2021global,
   title={Global Filter Networks for Image Classification},
   author={Rao, Yongming and Zhao, Wenliang and Zhu, Zheng and Lu, Jiwen and Zhou, Jie},
-  journal={arXiv preprint arXiv:},
+  journal={arXiv preprint arXiv:2107.00645},
   year={2021}
 }
 ```

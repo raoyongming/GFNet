@@ -17,13 +17,13 @@ Our code is based on [pytorch-image-models](https://github.com/rwightman/pytorch
 We provide our GFNet models pretrained on ImageNet:
 | name | arch | Params | FLOPs | acc@1 | acc@5 | url |
 | --- | --- | --- | --- | --- | --- | --- |
-| GFNet-Ti | ```gfnet-ti``` | 7M | 1.3G | 74.6 | 92.2 |  [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/3d0c1579aa524a0a99dd/?dl=1)|
-| GFNet-XS | ```gfnet-xs``` | 16M | 2.8G | 78.6 | 94.2 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/e0ab5b1583954a1fa9b2/?dl=1)|
-| GFNet-S | ```gfnet-s``` | 25M | 4.5G | 80.0 | 94.9 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/e5561fa070c44d9399bf/?dl=1)|
-| GFNet-B | ```gfnet-b``` | 43M | 7.9G | 80.7 | 95.1 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/2fbf264597af4d72afb3/?dl=1)|
-| GFNet-H-Ti | ```gfnet-h-ti``` | 15M | 2.0G | 80.1 | 95.1 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/b22dd45eccbe462cbbfb/?dl=1)|
-| GFNet-H-S | ```gfnet-h-s``` | 32M | 4.5G | 81.5 | 95.6 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/5229cb4d1daf48e69675/?dl=1)|
-| GFNet-H-B | ```gfnet-h-b``` | 54M | 8.4G | 82.9 | 96.2 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/954c5af21e824ba6b40c/?dl=1)|
+| GFNet-Ti | ```gfnet-ti``` | 7M | 1.3G | 74.6 | 92.2 |  [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/3d0c1579aa524a0a99dd/?dl=1) / [Google Drive](https://drive.google.com/file/d/1_xrfC7c_ccZnVicYDnrViOA_T1N-xoHI/view?usp=sharing)|
+| GFNet-XS | ```gfnet-xs``` | 16M | 2.8G | 78.6 | 94.2 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/e0ab5b1583954a1fa9b2/?dl=1) / [Google Drive](https://drive.google.com/file/d/1paf9gQWdsLXrG58R77yJ3U0FiNINg9xN/view?usp=sharing)|
+| GFNet-S | ```gfnet-s``` | 25M | 4.5G | 80.0 | 94.9 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/e5561fa070c44d9399bf/?dl=1) / [Google Drive](https://drive.google.com/file/d/18aRey_1abWNMmSL7TZQ4WxpplLRCDGEl/view?usp=sharing)|
+| GFNet-B | ```gfnet-b``` | 43M | 7.9G | 80.7 | 95.1 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/2fbf264597af4d72afb3/?dl=1) / [Google Drive](https://drive.google.com/file/d/1OncnXYAXpdjZBq4JK5Y3xacIHOIMePQo/view?usp=sharing)|
+| GFNet-H-Ti | ```gfnet-h-ti``` | 15M | 2.0G | 80.1 | 95.1 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/b22dd45eccbe462cbbfb/?dl=1) / [Google Drive](https://drive.google.com/file/d/1Nrq5sfHD9RklCMl6WkcVrAWI5vSVzwSm/view?usp=sharing)|
+| GFNet-H-S | ```gfnet-h-s``` | 32M | 4.5G | 81.5 | 95.6 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/5229cb4d1daf48e69675/?dl=1) / [Google Drive](https://drive.google.com/file/d/1w4d7o1LTBjmSkb5NKzgXBBiwdBOlwiie/view?usp=sharing)|
+| GFNet-H-B | ```gfnet-h-b``` | 54M | 8.4G | 82.9 | 96.2 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/954c5af21e824ba6b40c/?dl=1) / [Google Drive](https://drive.google.com/file/d/1F900_-yPH7GFYfTt60xn4tu5a926DYL0/view?usp=sharing)|
 
 
 ## Usage

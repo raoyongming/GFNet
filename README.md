@@ -12,6 +12,36 @@ Our code is based on [pytorch-image-models](https://github.com/rwightman/pytorch
 
 [[Project Page]](https://gfnet.ivg-research.xyz/) [[arXiv]](https://arxiv.org/abs/2107.00645)
 
+## Global Filter Layer
+
+GFNet is a conceptually simple yet computationally efficient architecture, which consists of several stacking Global Filter Layers and Feedforward Networks (FFN).  The Global Filter Layer mixes tokens with log-linear complexity benefiting from the highly efficient Fast Fourier Transform (FFT) algorithm.  The layer is easy to implement: 
+
+```python
+import torch
+import torch.nn as nn
+import torch.fft
+
+class GlobalFilter(nn.Module):
+    def __init__(self, dim, h=14, w=8):
+        super().__init__()
+        self.complex_weight = nn.Parameter(torch.randn(h, w, dim, 2, dtype=torch.float32) * 0.02)
+        self.w = w
+        self.h = h
+
+    def forward(self, x):
+        B, H, W, C = x.shape
+        x = torch.fft.rfft2(x, dim=(1, 2), norm='ortho')
+        weight = torch.view_as_complex(self.complex_weight)
+        x = x * weight
+        x = torch.fft.irfft2(x, s=(H, W), dim=(1, 2), norm='ortho')
+        return x
+
+```
+
+Compared to self-attention and spatial MLP, our Global Filter Layer is much more efficient to process high-resolution feature maps:
+
+![efficiency](figs/efficiency.png)
+
 ## Model Zoo
 
 We provide our GFNet models pretrained on ImageNet:
@@ -24,6 +54,7 @@ We provide our GFNet models pretrained on ImageNet:
 | GFNet-H-Ti | ```gfnet-h-ti``` | 15M | 2.0G | 80.1 | 95.1 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/b22dd45eccbe462cbbfb/?dl=1) / [Google Drive](https://drive.google.com/file/d/1Nrq5sfHD9RklCMl6WkcVrAWI5vSVzwSm/view?usp=sharing)|
 | GFNet-H-S | ```gfnet-h-s``` | 32M | 4.5G | 81.5 | 95.6 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/5229cb4d1daf48e69675/?dl=1) / [Google Drive](https://drive.google.com/file/d/1w4d7o1LTBjmSkb5NKzgXBBiwdBOlwiie/view?usp=sharing)|
 | GFNet-H-B | ```gfnet-h-b``` | 54M | 8.4G | 82.9 | 96.2 | [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/954c5af21e824ba6b40c/?dl=1) / [Google Drive](https://drive.google.com/file/d/1F900_-yPH7GFYfTt60xn4tu5a926DYL0/view?usp=sharing)|
+
 
 
 ## Usage

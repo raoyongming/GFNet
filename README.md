@@ -25,8 +25,6 @@ class GlobalFilter(nn.Module):
     def __init__(self, dim, h=14, w=8):
         super().__init__()
         self.complex_weight = nn.Parameter(torch.randn(h, w, dim, 2, dtype=torch.float32) * 0.02)
-        self.w = w
-        self.h = h
 
     def forward(self, x):
         B, H, W, C = x.shape
@@ -88,7 +86,7 @@ Data preparation: download and extract ImageNet images from http://image-net.org
 To evaluate a pre-trained GFNet model on the ImageNet validation set with a single GPU, run:
 
 ```
-python infer.py --data-path /path/to/ILSVRC2012/ --arch arch_name --path /path/to/model
+python infer.py --data-path /path/to/ILSVRC2012/ --arch arch_name --model-path /path/to/model
 ```
 
 

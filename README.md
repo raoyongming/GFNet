@@ -59,11 +59,13 @@ We provide our GFNet models pretrained on ImageNet:
 
 ### Requirements
 
-- torch>=1.8.1
+- torch>=1.8.0
 - torchvision
 - timm
 
-Data preparation: download and extract ImageNet images from http://image-net.org/. The directory structure should be
+*Note*: To use the ```rfft2``` and ```irfft2``` functions in PyTorch, you need to install PyTorch>=1.8.0. Complex numbers are supported after PyTorch 1.6.0, but the ```fft``` API is slightly different from the current version. 
+
+**Data preparation**: download and extract ImageNet images from http://image-net.org/. The directory structure should be
 
 ```
 │ILSVRC2012/

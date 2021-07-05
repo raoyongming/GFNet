@@ -1,5 +1,3 @@
-# Copyright (c) 2015-present, Facebook, Inc.
-# All rights reserved.
 import argparse
 import datetime
 import numpy as np
@@ -311,8 +309,14 @@ def main(args):
         # interpolate position embedding
         pos_embed_checkpoint = checkpoint_model['pos_embed']
         embedding_size = pos_embed_checkpoint.shape[-1]
-        num_patches = (args.input_size // 16) ** 2
-        
+
+        if args.arch in ['gfnet-ti', 'gfnet-xs', 'gfnet-s', 'gfnet-b']:
+            num_patches = (args.input_size // 16) ** 2
+        elif args.arch in ['gfnet-h-ti', 'gfnet-h-s', 'gfnet-h-b']:
+            num_patches = (args.input_size // 4) ** 2
+        else:
+            raise NotImplementedError
+                
         num_extra_tokens = 0
         # height (== width) for the checkpoint position embedding
         orig_size = int((pos_embed_checkpoint.shape[-2] - num_extra_tokens) ** 0.5)

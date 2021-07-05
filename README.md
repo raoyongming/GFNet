@@ -115,6 +115,12 @@ To finetune a pre-trained model on a transfer learning dataset, run:
 python -m torch.distributed.launch --nproc_per_node=8 --use_env main_gfnet_transfer.py  --output_dir logs/gfnet-xs-cars --arch gfnet-xs --batch-size 64 --data-set CARS --data-path /path/to/stanford_cars --epochs 1000 --dist-eval --lr 0.0001 --weight-decay 1e-4 --clip-grad 1 --warmup-epochs 5 --finetune /path/to/model 
 ```
 
+## Visualization
+
+To have an intuitive understanding of our Global Filter operation, we visualize the learned filters from different layers of GFNet-XS. 
+
+![vis](figs/filters.png)
+
 ## License
 MIT License
 

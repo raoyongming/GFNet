@@ -47,12 +47,11 @@ class Mlp(nn.Module):
         return x
 
 class GlobalFilter(nn.Module):
-    def __init__(self, dim, h=14, w=8, fp32fft=True):
+    def __init__(self, dim, h=14, w=8):
         super().__init__()
         self.complex_weight = nn.Parameter(torch.randn(h, w, dim, 2, dtype=torch.float32) * 0.02)
         self.w = w
         self.h = h
-        self.fp32fft = fp32fft
 
     def forward(self, x, spatial_size=None):
         B, N, C = x.shape
@@ -63,17 +62,12 @@ class GlobalFilter(nn.Module):
 
         x = x.view(B, a, b, C)
 
-        if self.fp32fft:
-            dtype = x.dtype
-            x = x.to(torch.float32)
+        x = x.to(torch.float32)
 
         x = torch.fft.rfft2(x, dim=(1, 2), norm='ortho')
         weight = torch.view_as_complex(self.complex_weight)
         x = x * weight
         x = torch.fft.irfft2(x, s=(a, b), dim=(1, 2), norm='ortho')
-
-        if self.fp32fft:
-            x = x.to(dtype)
 
         x = x.reshape(B, N, C)
 
@@ -81,10 +75,10 @@ class GlobalFilter(nn.Module):
 
 class Block(nn.Module):
 
-    def __init__(self, dim, mlp_ratio=4., drop=0., drop_path=0., act_layer=nn.GELU, norm_layer=nn.LayerNorm, h=14, w=8, fp32fft=True):
+    def __init__(self, dim, mlp_ratio=4., drop=0., drop_path=0., act_layer=nn.GELU, norm_layer=nn.LayerNorm, h=14, w=8):
         super().__init__()
         self.norm1 = norm_layer(dim)
-        self.filter = GlobalFilter(dim, h=h, w=w, fp32fft=fp32fft)
+        self.filter = GlobalFilter(dim, h=h, w=w)
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.norm2 = norm_layer(dim)
         mlp_hidden_dim = int(dim * mlp_ratio)
@@ -97,10 +91,10 @@ class Block(nn.Module):
 class BlockLayerScale(nn.Module):
 
     def __init__(self, dim, mlp_ratio=4., drop=0., drop_path=0., act_layer=nn.GELU, 
-                norm_layer=nn.LayerNorm, h=14, w=8, init_values=1e-5, fp32fft=True):
+                norm_layer=nn.LayerNorm, h=14, w=8, init_values=1e-5):
         super().__init__()
         self.norm1 = norm_layer(dim)
-        self.filter = GlobalFilter(dim, h=h, w=w, fp32fft=fp32fft)
+        self.filter = GlobalFilter(dim, h=h, w=w)
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.norm2 = norm_layer(dim)
         mlp_hidden_dim = int(dim * mlp_ratio)
@@ -157,7 +151,7 @@ class GFNet(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dim=768, depth=12,
                  mlp_ratio=4., representation_size=None, uniform_drop=False,
                  drop_rate=0., drop_path_rate=0., norm_layer=None, 
-                 fp32fft=True, dropcls=0):
+                 dropcls=0):
         """
         Args:
             img_size (int, tuple): input image size
@@ -203,7 +197,7 @@ class GFNet(nn.Module):
         self.blocks = nn.ModuleList([
             Block(
                 dim=embed_dim, mlp_ratio=mlp_ratio,
-                drop=drop_rate, drop_path=dpr[i], norm_layer=norm_layer, h=h, w=w, fp32fft=fp32fft)
+                drop=drop_rate, drop_path=dpr[i], norm_layer=norm_layer, h=h, w=w)
             for i in range(depth)])
         
         self.norm = norm_layer(embed_dim)

@@ -2,7 +2,7 @@
 
 Created by [Yongming Rao](https://raoyongming.github.io/), [Wenliang Zhao](https://thu-jw.github.io/), [Zheng Zhu](http://www.zhengzhu.net/), [Jiwen Lu](https://scholar.google.com/citations?user=TN8uDQoAAAAJ&hl=en&authuser=1), [Jie Zhou](https://scholar.google.com/citations?user=6a79aPwAAAAJ&hl=en&authuser=1)
 
-This repository contains PyTorch implementation for GFNet.
+This repository contains PyTorch implementation for GFNet (NeurIPS 2021).
 
 Global Filter Networks is a transformer-style architecture that learns long-term spatial dependencies in the frequency domain with log-linear complexity. Our architecture replaces the self-attention layer in vision transformers with three key operations: a 2D discrete Fourier transform, an element-wise multiplication between frequency-domain features and learnable global filters, and a 2D inverse Fourier transform.
 
@@ -127,10 +127,10 @@ MIT License
 ## Citation
 If you find our work useful in your research, please consider citing:
 ```
-@article{rao2021global,
+@inproceedings{rao2021global,
   title={Global Filter Networks for Image Classification},
   author={Rao, Yongming and Zhao, Wenliang and Zhu, Zheng and Lu, Jiwen and Zhou, Jie},
-  journal={arXiv preprint arXiv:2107.00645},
-  year={2021}
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year = {2021}
 }
 ```
